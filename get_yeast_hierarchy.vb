@@ -16,11 +16,9 @@ Private Sub Worksheet_Change(ByVal Target As Range)
     Set yst_parents = Range("Table1[Parent_ID]")
     Set yst_ids = Range("Table1[ID]")
     
-    'Get number of table rows
+    'Find parent and add to collection
     Dim row_count As Long
     row_count = yst_names.Rows().Count
-    
-    'Find parent and add to collection
     yst_parent = Range("SelectedYeast").Value
     Do Until yst_parent = 0
         For i = 0 To row_count
@@ -30,7 +28,6 @@ Private Sub Worksheet_Change(ByVal Target As Range)
                 Exit For
             End If
         Next
-        Debug.Print "Parent Yeast #" & lineage.Count & ": " & lineage.Item(lineage.Count)
     Loop
     lineage.Remove 1
     
